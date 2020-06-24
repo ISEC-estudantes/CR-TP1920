@@ -1,0 +1,46 @@
+[System]
+Name='modelo'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=0
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='aceleracao'
+Range=[0 7000]
+NumMFs=3
+MF1='baixa':'trimf',[-2800 0 2800]
+MF2='media':'trapmf',[1000 2800 4200 6000]
+MF3='alta':'trimf',[4200 7000 9800]
+
+[Input2]
+Name='terreno'
+Range=[-30 30]
+NumMFs=3
+MF1='descida':'trimf',[-55 -30 0]
+MF2='plano':'trimf',[-20 0 20]
+MF3='subida':'trimf',[0 30 55]
+
+[Input3]
+Name='pneus'
+Range=[1 10]
+NumMFs=3
+MF1='irregular':'pimf',[1 1 1.6 4]
+MF2='ideal':'pimf',[1 4 6 9.971]
+MF3='novos':'pimf',[7 9 10 15]
+
+[Output1]
+Name='consumo'
+Range=[0 10]
+NumMFs=3
+MF1='baixo':'trapmf',[-3.6 -0.4 2 5]
+MF2='medio':'trapmf',[1.4 4 6 8.6]
+MF3='alto':'trapmf',[6.4 8 10.4 13.6]
+
+[Rules]

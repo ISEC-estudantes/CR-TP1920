@@ -1,0 +1,2 @@
+recrutamento = Recrutamento();
+retribuicao = Retribuicao();
