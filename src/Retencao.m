@@ -1,21 +1,19 @@
  
-function [ fis_Retribuicao ] = Retribuicao()
+function [ fis_Retencao ] = Retencao()
 
-%PASSO 1: crie a estrutura FIS de nome fis_Retribuicao 
+%PASSO 1: crie a estrutura FIS de nome fis_Retencao 
 %%mamdani default gang
-fis_Retribuicao = newfis('fis_Retribuicao');
+fis_Retencao = newfis('fis_Retencao');
 
 
 %PASSO 2: criar variaveis linguisticas ?servico?, ?comida? e ?gorjeta?
 %Variaeis de retencao
 %%inputs
-fis_Retribuicao=addvar(fis_Retribuicao,'input','mediaCustosPessoal',[0 45]);%baixo
-fis_Retribuicao=addvar(fis_Retribuicao,'input','salarioMedioSCA',[400 1300]);%baixo
-fis_Retribuicao=addvar(fis_Retribuicao,'input','salarioMedioCCA',[700 1800]);%baixo
-fis_Retribuicao=addvar(fis_Retribuicao,'input','percentBonificacoes',[0 25]);%alto
+fis_Retencao=addvar(fis_Retencao,'input','mediaCustosPessoal',[0 5]);%baixo
+fis_Retencao=addvar(fis_Retencao,'input','salarioMedioSCA',[0 15]);%baixo
 
 %%output
-fis_Retribuicao=addvar(fis_Retribuicao,'output', 'Retribuicao', [0, 100]);
+fis_Retencao=addvar(fis_Retencao,'output', 'Retencao', [0, 100]);
 
 %PASSO 3: fun??es de perten?a para cada vari?vel criada anteriormente
 
@@ -38,12 +36,15 @@ fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'alto','trimf',[61,100,100]);
 
 
 regras = [
+        1 1 3 1 2
+        2 2 2 1 2
+        3 3 1 1 2
 ];
 
-fis_Retribuicao = addrule(fis_Retribuicao, regras);
+fis_Retencao = addrule(fis_Retencao, regras);
 
-entrada = [0 400 700 25];
+entrada = [0 0];
 
-out = evalfis(entrada, fis_Retribuicao)
+out = evalfis(entrada, fis_Retencao)
 
 end
