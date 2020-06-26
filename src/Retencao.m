@@ -1,5 +1,5 @@
  
-function [ fis_Retencao, out ] = Retencao()
+function [ fis_Retencao, out ] = Retencao(percentEmptN1Desistentes,percentEmptOperacionaisDesistentes )
 
 %PASSO 1: crie a estrutura FIS de nome fis_Retencao 
 %%mamdani default gang
@@ -9,8 +9,8 @@ fis_Retencao = newfis('fis_Retencao');
 %PASSO 2: criar variaveis linguisticas ?servico?, ?comida? e ?gorjeta?
 %Variaeis de retencao
 %%inputs
-fis_Retencao=addvar(fis_Retencao,'input','mediaCustosPessoal',[0 5]);%baixo
-fis_Retencao=addvar(fis_Retencao,'input','salarioMedioSCA',[0 15]);%baixo
+fis_Retencao=addvar(fis_Retencao,'input','percentEmptN1Desistentes',[0 5]);%baixo
+fis_Retencao=addvar(fis_Retencao,'input','percentEmptOperacionaisDesistentes',[0 15]);%baixo
 
 %%output
 fis_Retencao=addvar(fis_Retencao,'output', 'Retencao', [0, 100]);

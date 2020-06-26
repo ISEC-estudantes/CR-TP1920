@@ -1,4 +1,4 @@
-function [ fis_Formacao ] = Formacao(percentCustoForm, horasForm, horasFormFN1)
+function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasFormFN1)
 
 %PASSO 1: crie a estrutura FIS de nome fis_Formacao 
 %%mamdani default gang

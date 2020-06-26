@@ -28,17 +28,19 @@ fis_GRH=addmf(fis_GRH,'input',3,'alto','trimf',[61,100,100]);
 fis_GRH=addmf(fis_GRH,'input',4,'baixo','trimf',[0,0,38]);
 fis_GRH=addmf(fis_GRH,'input',4,'medio','trimf',[28,50,71]);
 fis_GRH=addmf(fis_GRH,'input',4,'alto','trimf',[61,100,100]);
-%output
-%|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-fis_GRH=addmf(fis_GRH,'output',1,'baixo','trimf',[0,0,38]);
-fis_GRH=addmf(fis_GRH,'output',1,'medio','trimf',[28,50,71]);
-fis_GRH=addmf(fis_GRH,'output',1,'alto','trimf',[61,100,100]);
 
+%output
+%|0|---|-0.125-|---|0.25|---|-0.375-|---|0.5|---|-0.625-|---|0.75|---|-0.875-|---|1|
+fis_GRH=addmf(fis_GRH,'output',1,'mau','trimf',[0,0,0.125]);
+fis_GRH=addmf(fis_GRH,'output',1,'meiocre','trimf',[0.125,0.25,0.375]);
+fis_GRH=addmf(fis_GRH,'output',1,'suficiente','trimf',[0.375,0.5,0.625]);
+fis_GRH=addmf(fis_GRH,'output',1,'bom','trimf',[0.625,0.75,0.875]);
+fis_GRH=addmf(fis_GRH,'output',1,'muito bom','trimf',[0.875,1,1]);
 
 regras = [
         1 1 1 1 1 1 2
-        2 2 2 2 2 1 2
-        3 3 3 3 3 1 2
+        2 2 2 2 3 1 2
+        3 3 3 3 5 1 2
 ];
 
 fis_GRH = addrule(fis_GRH, regras);
