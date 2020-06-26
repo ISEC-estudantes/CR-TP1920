@@ -29,15 +29,15 @@ fis_Formacao=addmf(fis_Formacao,'input',2,'medio','trimf',[6.25,22.5,38.75]);
 fis_Formacao=addmf(fis_Formacao,'input',2,'alto','trimf',[28.75,45,45]);
 
 %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'baixo','trimf',[0,0,38]);
-fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'medio','trimf',[28,50,71]);
-fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'alto','trimf',[61,100,100]);
+fis_Formacao=addmf(fis_Formacao,'input',3,'baixo','trimf',[0,0,38]);
+fis_Formacao=addmf(fis_Formacao,'input',3,'medio','trimf',[28,50,71]);
+fis_Formacao=addmf(fis_Formacao,'input',3,'alto','trimf',[61,100,100]);
 
 
 %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'baixo','trimf',[0,0,38]);
-fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'medio','trimf',[28,50,71]);
-fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'alto','trimf',[61,100,100]);
+fis_Formacao=addmf(fis_Formacao,'output',1,'baixo','trimf',[0,0,38]);
+fis_Formacao=addmf(fis_Formacao,'output',1,'medio','trimf',[28,50,71]);
+fis_Formacao=addmf(fis_Formacao,'output',1,'alto','trimf',[61,100,100]);
 
 
 regras = [
