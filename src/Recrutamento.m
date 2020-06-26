@@ -1,4 +1,4 @@
-function [ fis_Recrutamento ] = Recrutamento()
+function [ fis_Recrutamento ] = Recrutamento(entrada)
 
 %PASSO 1: crie a estrutura FIS de nome fis_Recrutamento 
 %%mamdani default gang

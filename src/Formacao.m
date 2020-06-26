@@ -1,4 +1,4 @@
-function [ fis_Formacao ] = Formacao()
+function [ fis_Formacao ] = Formacao(percentCustoForm, horasForm, horasFormFN1)
 
 %PASSO 1: crie a estrutura FIS de nome fis_Formacao 
 %%mamdani default gang
@@ -51,7 +51,7 @@ regras = [
 
 fis_Formacao = addrule(fis_Formacao, regras);
 
-entrada = [2.5 22.5 100];
+entrada = [percentCustoForm horasForm horasFormFN1];
 
 out = evalfis(entrada, fis_Formacao)
 

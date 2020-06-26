@@ -1,4 +1,4 @@
-function [ fis_Retribuicao ] = Retribuicao()
+function [ fis_Retribuicao, out ] = Retribuicao(mediaCustosPessoal, salarioMedioSCA, salarioMedioCCA, percentBonificacoes)
 
 %PASSO 1: crie a estrutura FIS de nome fis_Retribuicao 
 %%mamdani default gang
@@ -55,7 +55,7 @@ regras = [
 
 fis_Retribuicao = addrule(fis_Retribuicao, regras);
 
-entrada = [0 400 700 25];
+entrada = [mediaCustosPessoal salarioMedioSCA salarioMedioCCA percentBonificacoes];
 
 out = evalfis(entrada, fis_Retribuicao)
 

@@ -1,5 +1,5 @@
  
-function [ fis_Retencao ] = Retencao()
+function [ fis_Retencao, out ] = Retencao()
 
 %PASSO 1: crie a estrutura FIS de nome fis_Retencao 
 %%mamdani default gang
