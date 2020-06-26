@@ -55,8 +55,8 @@ regras = [
 
 fis_Retribuicao = addrule(fis_Retribuicao, regras);
 
-entrada = [mediaCustosPessoal salarioMedioSCA salarioMedioCCA percentBonificacoes];
+entrada = [mediaCustosPessoal, salarioMedioSCA, salarioMedioCCA, percentBonificacoes];
 
-out = evalfis(entrada, fis_Retribuicao)
+out = evalfis(entrada, fis_Retribuicao);
 
 end

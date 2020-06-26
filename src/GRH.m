@@ -1,4 +1,4 @@
-function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao. retencao)
+function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao)
 
 fis_GRH = newfis('fis_GRH');
 

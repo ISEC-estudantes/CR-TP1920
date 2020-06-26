@@ -51,8 +51,8 @@ regras = [
 
 fis_Formacao = addrule(fis_Formacao, regras);
 
-entrada = [percentCustoForm horasForm horasFormFN1];
+entrada = [percentCustoForm, horasForm, horasFormFN1];
 
-out = evalfis(entrada, fis_Formacao)
+out = evalfis(entrada, fis_Formacao);
 
 end

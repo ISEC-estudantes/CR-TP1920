@@ -1,4 +1,4 @@
-function [ fis_Recrutamento ] = Recrutamento(entrada)
+function [ fis_Recrutamento, out ] = Recrutamento(mediaCustoContrato, mediaTmpProcessoEmpTemporario, mediaTmpProcessoEmpDefinitivo )
 
 %PASSO 1: crie a estrutura FIS de nome fis_Recrutamento 
 %%mamdani default gang
@@ -58,8 +58,8 @@ fis_Recrutamento = addrule(fis_Recrutamento, regras);
 
 %PASSO 5: avaliar para v?rios valores de service e comida com evalfis
 
-entrada = [50 50 50];
+entrada = [mediaCustoContrato, mediaTmpProcessoEmpTemporario, mediaTmpProcessoEmpDefinitivo];
 
-out = evalfis(entrada, fis_Recrutamento)
+out = evalfis(entrada, fis_Recrutamento);
  
 end
