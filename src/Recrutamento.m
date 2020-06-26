@@ -15,7 +15,6 @@ fis_Recrutamento=addvar(fis_Recrutamento,'input','mediaTmpProcessoEmpDefinitivo'
 %%output
 fis_Recrutamento=addvar(fis_Recrutamento,'output', 'Recrutamento', [0, 100]);
 
-
 %PASSO 3: fun??es de perten?a para cada vari?vel criada anteriormente
 %Defenicao dos limites [baixo, medio, baixo]
 
@@ -29,6 +28,7 @@ fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'baixo','trimf',[3,3,50]);
 fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'medio','trimf',[30,60,100]);
 fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'alto','trimf',[80,120,120]);
 
+
 %|3|---|22-30-38|---|45|---|52-60-68|--|90|
 fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'baixo','trimf',[3,3,38]);
 fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'medio','trimf',[22,45,68]);
@@ -39,7 +39,6 @@ fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'alto','trimf',[52,90,90]);
 fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'baixo','trimf',[0,0,38]);
 fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'medio','trimf',[28,50,71]);
 fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'alto','trimf',[61,100,100]);
-
 
 
 %PASSO 4: criar matriz de regras e adicionar com addrule
