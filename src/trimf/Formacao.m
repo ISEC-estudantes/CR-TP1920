@@ -2,7 +2,7 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
 
 %PASSO 1: crie a estrutura FIS de nome fis_Formacao 
 %%mamdani default gang
-fis_Formacao = newfis('fis_Formacao');
+fis_Formacao = newfis('fis_Formacao'); %#ok<*FISNEW> 
 
 
 %PASSO 2: criar variaveis linguisticas ?servico?, ?comida? e ?gorjeta?
@@ -13,13 +13,13 @@ fis_Formacao=addvar(fis_Formacao,'input','horasForm',[0 45]);%medio
 fis_Formacao=addvar(fis_Formacao,'input','horasFormFN1',[0 100]);%alto
 
 %%output
-fis_Formacao=addvar(fis_Formacao,'output', 'Formacao', [0, 100]);
+fis_Formacao=addvar(fis_Formacao,'output', 'Formacao', [0, 100]); %#ok<*FISADV> 
 
 %PASSO 3: fun??es de perten?a para cada vari?vel criada anteriormente
 %Defenicao dos limites [baixo, medio, baixo]
 
 %|0|---|0.75-1.25-1.75|---|2.5|---|3.25-3.75-4.25|---|5|
-fis_Formacao=addmf(fis_Formacao,'input',1,'baixo','trimf',[0,0,14]);
+fis_Formacao=addmf(fis_Formacao,'input',1,'baixo','trimf',[0,0,14]); %#ok<*FISADM> 
 fis_Formacao=addmf(fis_Formacao,'input',1,'medio','trimf',[8,23,37]);
 fis_Formacao=addmf(fis_Formacao,'input',1,'alto','trimf',[31,45,45]);
 
@@ -49,7 +49,7 @@ regras = [
     0 0 1 1 1 1
 ];
 
-fis_Formacao = addrule(fis_Formacao, regras);
+fis_Formacao = addrule(fis_Formacao, regras); %#ok<*FISADR> 
 
 entrada = [percentCustoForm, horasForm, horasFormFN1];
 

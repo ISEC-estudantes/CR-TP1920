@@ -45,6 +45,6 @@ fis_Retencao = addrule(fis_Retencao, regras);
 
 entrada = [0 0];
 
-out = evalfis(entrada, fis_Retencao)
+out = evalfis(entrada, fis_Retencao);
 
 end
