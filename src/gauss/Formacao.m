@@ -10,7 +10,7 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
     fis_Formacao=addvar(fis_Formacao,'input','percentCustoForm',[baixo alto]);%medio
    
     if mf == 1
-        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset)
         fis_Formacao=addmf(fis_Formacao,'input',1,'baixo','trimf',[baixo,baixo,bD]); %#ok<*FISADM>
         fis_Formacao=addmf(fis_Formacao,'input',1,'medio','trimf',[mE,m,mD]);
         fis_Formacao=addmf(fis_Formacao,'input',1,'alto','trimf',[aE,alto,alto]);
@@ -40,14 +40,16 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
     baixo = 0; alto = 100; oofset = setdiv(38);
     fis_Formacao=addvar(fis_Formacao,'input','horasFormFN1',[baixo, alto]);%alto
     if mf == 1
-        fis_Formacao=addmf(fis_Formacao,'input',3,'baixo','trimf',[0,0,38]);
-        fis_Formacao=addmf(fis_Formacao,'input',3,'medio','trimf',[28,50,71]);
-        fis_Formacao=addmf(fis_Formacao,'input',3,'alto','trimf',[61,100,100]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Formacao=addmf(fis_Formacao,'input',3,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Formacao=addmf(fis_Formacao,'input',3,'medio','trimf',[mE,m,mD]);
+        fis_Formacao=addmf(fis_Formacao,'input',3,'alto','trimf',[aE,alto,alto]);
     else%if mf == 2 
         fis_Formacao=addmf(fis_Formacao,'input',3,'baixo','gaussmf',[oofset, baixo]);
         fis_Formacao=addmf(fis_Formacao,'input',3,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Formacao=addmf(fis_Formacao,'input',3,'alto','gaussmf',[oofset, alto]);
     end
+    
     %output
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
     baixo = 0; alto = 1; oofset = setdiv(0.38);
