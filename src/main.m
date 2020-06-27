@@ -1,6 +1,6 @@
 function  [ out ] = main(mf)
     warning off
-    addpath('./gauss/');
+    %addpath('./gauss/');
     if ~exist('mf','var')
     mf = 2 ; % 1 - trimf ; 2 - gaussmf
     end

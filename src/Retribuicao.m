@@ -6,7 +6,7 @@ function [ fis_Retribuicao, out ] = Retribuicao(mediaCustosPessoal, salarioMedio
     
     %input
     %|0|---|8-11-14|---|23|---|31-34-37|---|45|
-    baixo = 0 ; alto = 45; oofset = setdiv(18);
+    baixo = 0 ; alto = 45; oofset = setdiv(12);
     fis_Retribuicao=addvar(fis_Retribuicao,'input','mediaCustosPessoal',[0 45]);%baixo
     if mf == 1
         fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'baixo','trimf',[0,0,14]);
@@ -18,12 +18,12 @@ function [ fis_Retribuicao, out ] = Retribuicao(mediaCustosPessoal, salarioMedio
         fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'alto','gaussmf',[oofset, alto]);
     end
     
-    %|400|---|600-700-800|---|450|---|900-1000-1100|---|1300|
-    baixo = 0 ; alto = 1300; oofset = setdiv(380);
+    %|400|---|600-700-800|---|850|---|900-1000-1100|---|1300|
+    baixo = 400 ; alto = 1300; oofset = setdiv(300);
     fis_Retribuicao=addvar(fis_Retribuicao,'input','salarioMedioSCA',[400 1300]);%baixo
     if mf == 1
         fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'baixo','trimf',[400,400,800]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'medio','trimf',[450,600,1100]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'medio','trimf',[600,850,1100]);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'alto','trimf',[900,1300,1300]);
     else
         fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'baixo','gaussmf',[oofset, baixo]);
