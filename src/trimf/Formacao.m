@@ -18,7 +18,7 @@ fis_Formacao=addvar(fis_Formacao,'output', 'Formacao', [0, 100]); %#ok<*FISADV>
 %PASSO 3: fun??es de perten?a para cada vari?vel criada anteriormente
 %Defenicao dos limites [baixo, medio, baixo]
 
-%|0|---|0.75-1.25-1.75|---|2.5|---|3.25-3.75-4.25|---|5|
+%|0|---|0.75-1.25-1.75|---|2.5|---|3.25-3.75-4.25|---|5| 
 fis_Formacao=addmf(fis_Formacao,'input',1,'baixo','trimf',[0,0,14]); %#ok<*FISADM> 
 fis_Formacao=addmf(fis_Formacao,'input',1,'medio','trimf',[8,23,37]);
 fis_Formacao=addmf(fis_Formacao,'input',1,'alto','trimf',[31,45,45]);

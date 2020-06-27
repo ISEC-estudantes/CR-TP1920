@@ -26,3 +26,5 @@ termos e o tipo de funções de pertença ficam à sua escolha.
 - % de empregados de nível 1 que deixaram o hotel por sua iniciativa -> percentEmptN1Desistentes
 
 - % de empregados operacionais que deixaram o hotel por sua iniciativa -> percentEmptOperacionaisDesistentes
+
+

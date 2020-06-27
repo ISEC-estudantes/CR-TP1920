@@ -1,5 +1,4 @@
- 
-function [ fis_Retencao, out ] = Retencao(percentEmptN1Desistentes,percentEmptOperacionaisDesistentes )
+function [ fis_Retencao, out ] = Retencao(percentEmptN1Desistentes,percentEmptOperacionaisDesistentes)
 
 %PASSO 1: crie a estrutura FIS de nome fis_Retencao 
 %%mamdani default gang
@@ -43,7 +42,7 @@ regras = [
 
 fis_Retencao = addrule(fis_Retencao, regras);
 
-entrada = [0 0];
+entrada = [percentEmptN1Desistentes,percentEmptOperacionaisDesistentes];
 
 out = evalfis(entrada, fis_Retencao);
 
