@@ -1,4 +1,4 @@
-function [meio, baixoDir, meioEsq, meioDir, altoEsq] = trivalue(baixo, alto, oofset)
+function [meio, baixoDir, meioEsq, meioDir, altoEsq] = trivalue(alto, baixo, oofset)
     meio = ((alto - baixo)/2) + baixo;
     baixoDir = baixo + oofset;
     meioEsq = meio - oofset;
