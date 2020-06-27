@@ -1,30 +1,17 @@
 function  [ out ] = main(mf)
     warning off
-    %addpath('./gauss/');
+    addpath('./helpers/');
     if ~exist('mf','var')
-    mf = 2 ; % 1 - trimf ; 2 - gaussmf
+        mf = 2 ; % 1 - trimf ; 2 - gaussmf
     end
     %%%variaveis
+    %valores : 1 - alto ; 2 - medio ; 3 - min
     
-    %recrutamento
-    mediaCustoContrato =  5 ; %[ 5 , 75 ] -> Objetivo: Baixo
-    mediaTmpProcessoEmpTemporario = 3 ; %[ 3 , 120 ] -> Objetivo: Baixo
-    mediaTmpProcessoEmpDefinitivo = 3 ; %[ 3 , 90 ] -> Objetivo: Baixo
-    
-    %retribuicao
-    mediaCustosPessoal = 0 ; % [ 0 , 45 ] -> Objetivo: Baixo
-    salarioMedioSCA = 400 ; % [400 , 1300 ] -> Objetivo: Baixo
-    salarioMedioCCA = 700 ; % [ 700 , 1800 ] -> Objetivo: Baixo
-    percentBonificacoes = 25 ; % [ 0 , 25 ] -> Objetivo: Alto
-    
-    %formacao
-    percentCustoForm = 2.5 ; % [ 0 , 5 ] -> Objetivo: Médio
-    horasForm = 23 ; % [ 0 , 45 ] -> Objetivo: Médio
-    horasFormFN1 = 100 ; % [ 0 , 100] -> Objetivo: Alto
-    
-    %retencao
-    percentEmptN1Desistentes = 0 ; % [ 0 , 5 ] -> Objetivo: Baixo
-    percentEmptOperacionaisDesistentes = 0 ; % [ 0 , 15 ] -> Objetivo: Baixo
+    [mediaCustoContrato, mediaTmpProcessoEmpTemporario, mediaTmpProcessoEmpDefinitivo, ...
+        mediaCustosPessoal, salarioMedioSCA,salarioMedioCCA, percentBonificacoes, ...
+        percentCustoForm, horasForm, horasFormFN1, ...
+        percentEmptN1Desistentes, percentEmptOperacionaisDesistentes...
+        ] = PreValores(3);
     
     [~, recrutamento] = Recrutamento(mediaCustoContrato, mediaTmpProcessoEmpTemporario, mediaTmpProcessoEmpDefinitivo, mf );
     [~, retribuicao] = Retribuicao( mediaCustosPessoal, salarioMedioSCA, salarioMedioCCA, percentBonificacoes, mf );

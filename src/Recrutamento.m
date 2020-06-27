@@ -6,39 +6,45 @@ function [ fis_Recrutamento, out ] = Recrutamento(mediaCustoContrato, mediaTmpPr
     
     %input
     %|5|---|20-28|---|40|---|55-60|---|75|
-    baixo = 5; alto = 75; oofset = setdiv(20);
+    baixo = 5; alto = 75; offset = (28);
     fis_Recrutamento=addvar(fis_Recrutamento,'input','mediaCustoContrato',[baixo alto]);%baixo
     if mf == 1
-        fis_Recrutamento=addmf(fis_Recrutamento,'input',1,'baixo','trimf',[5,5,28]);
-        fis_Recrutamento=addmf(fis_Recrutamento,'input',1,'medio','trimf',[20,40,60]);
-        fis_Recrutamento=addmf(fis_Recrutamento,'input',1,'alto','trimf',[55,75,75]);
-    else
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Recrutamento=addmf(fis_Recrutamento,'input',1,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Recrutamento=addmf(fis_Recrutamento,'input',1,'medio','trimf',[mE,m,mD]);
+        fis_Recrutamento=addmf(fis_Recrutamento,'input',1,'alto','trimf',[aE,alto,alto]);
+    else%if mf == 2
+        oofset = setdiv(offset);
         fis_Recrutamento=addmf(fis_Recrutamento,'input',1,'baixo','gaussmf',[oofset, baixo]);
         fis_Recrutamento=addmf(fis_Recrutamento,'input',1,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Recrutamento=addmf(fis_Recrutamento,'input',1,'alto','gaussmf',[oofset, alto]);
     end
     
     %|3|----|30-40-50|---|60|---|80-90-100|---|120|
-    baixo = 3; alto = 120; oofset = setdiv(50);
+    baixo = 3; alto = 120; offset = (30);
     fis_Recrutamento=addvar(fis_Recrutamento,'input','mediaTmpProcessoEmpTemporario',[baixo alto]);%baixo
-    if mf == 1
-        fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'baixo','trimf',[3,3,50]);
-        fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'medio','trimf',[30,60,100]);
-        fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'alto','trimf',[80,120,120]);
-    else
+   if mf == 1
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'medio','trimf',[mE,m,mD]);
+        fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'alto','trimf',[aE,alto,alto]);
+    else%if mf == 2
+        oofset = setdiv(offset);
         fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'baixo','gaussmf',[oofset, baixo]);
         fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Recrutamento=addmf(fis_Recrutamento,'input',2,'alto','gaussmf',[oofset, alto]);
     end
     
     %|3|---|22-30-38|---|45|---|52-60-68|--|90|
-    baixo = 3; alto = 90; oofset = setdiv(38);
+    baixo = 3; alto = 90; offset = 38;
     fis_Recrutamento=addvar(fis_Recrutamento,'input','mediaTmpProcessoEmpDefinitivo',[baixo alto]);%baixo
     if mf == 1
-        fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'baixo','trimf',[3,3,38]);
-        fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'medio','trimf',[22,45,68]);
-        fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'alto','trimf',[52,90,90]);
-    else
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'medio','trimf',[mE,m,mD]);
+        fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'alto','trimf',[aE,alto,alto]);
+    else%if mf == 2
+        oofset = setdiv(offset);
         fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'baixo','gaussmf',[oofset, baixo]);
         fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Recrutamento=addmf(fis_Recrutamento,'input',3,'alto','gaussmf',[oofset, alto]);
@@ -46,13 +52,15 @@ function [ fis_Recrutamento, out ] = Recrutamento(mediaCustoContrato, mediaTmpPr
     
     %output
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; oofset = setdiv(0.38);
+    baixo = 0; alto = 1; offset = (0.38);
     fis_Recrutamento=addvar(fis_Recrutamento,'output', 'Recrutamento', [baixo alto]);%alto
     if mf == 1
-        fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'baixo','trimf',[0,0,0.38]);
-        fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'medio','trimf',[0.28,0.50,0.71]);
-        fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'alto','trimf',[0.61,1.00,1.00]);
-    else
+         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'medio','trimf',[mE,m,mD]);
+        fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'alto','trimf',[aE,alto,alto]);
+    else%if mf == 2 %gaussmf
+        oofset = setdiv(offset);
         fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'baixo','gaussmf',[oofset, baixo]);
         fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Recrutamento=addmf(fis_Recrutamento,'output',1,'alto','gaussmf',[oofset, alto]);

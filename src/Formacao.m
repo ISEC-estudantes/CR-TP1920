@@ -36,15 +36,16 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
         fis_Formacao=addmf(fis_Formacao,'input',2,'alto','gaussmf',[oofset, alto]);
     end
     
-    %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 100; oofset = setdiv(38);
+    %|0|---|28-33.3333-38|---|50| ---|61-66.66666-71|---|100|
+    baixo = 0; alto = 100; offset = (38);
     fis_Formacao=addvar(fis_Formacao,'input','horasFormFN1',[baixo, alto]);%alto
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
         fis_Formacao=addmf(fis_Formacao,'input',3,'baixo','trimf',[baixo,baixo,bD]);
         fis_Formacao=addmf(fis_Formacao,'input',3,'medio','trimf',[mE,m,mD]);
         fis_Formacao=addmf(fis_Formacao,'input',3,'alto','trimf',[aE,alto,alto]);
-    else%if mf == 2 
+    else%if mf == 2
+        oofset = setdiv(offset);
         fis_Formacao=addmf(fis_Formacao,'input',3,'baixo','gaussmf',[oofset, baixo]);
         fis_Formacao=addmf(fis_Formacao,'input',3,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Formacao=addmf(fis_Formacao,'input',3,'alto','gaussmf',[oofset, alto]);
@@ -52,13 +53,15 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
     
     %output
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; oofset = setdiv(0.38);
+    baixo = 0; alto = 1; offset = 0.38;
     fis_Formacao=addvar(fis_Formacao,'output', 'Formacao', [baixo alto]); %#ok<*FISADV>
     if mf == 1%trimf
-        fis_Formacao=addmf(fis_Formacao,'output',1,'baixo','trimf',[0,0,0.38]);
-        fis_Formacao=addmf(fis_Formacao,'output',1,'medio','trimf',[0.28,0.50,0.71]);
-        fis_Formacao=addmf(fis_Formacao,'output',1,'alto','trimf',[0.61,1.00,1.00]);
+         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Formacao=addmf(fis_Formacao,'output',1,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Formacao=addmf(fis_Formacao,'output',1,'medio','trimf',[mE,m,mD]);
+        fis_Formacao=addmf(fis_Formacao,'output',1,'alto','trimf',[aE,alto,alto]);
     else%if mf == 2 %gaussmf
+        oofset = setdiv(offset);
         fis_Formacao=addmf(fis_Formacao,'output',1,'baixo','gaussmf',[oofset, baixo ]);
         fis_Formacao=addmf(fis_Formacao,'output',1,'medio','gaussmf',[oofset, calcMeio(baixo, alto )]);
         fis_Formacao=addmf(fis_Formacao,'output',1,'alto','gaussmf',[oofset, alto ]);

@@ -6,65 +6,75 @@ function [ fis_Retribuicao, out ] = Retribuicao(mediaCustosPessoal, salarioMedio
     
     %input
     %|0|---|8-11-14|---|23|---|31-34-37|---|45|
-    baixo = 0 ; alto = 45; oofset = setdiv(12);
+    baixo = 0 ; alto = 45; offset = 14;
     fis_Retribuicao=addvar(fis_Retribuicao,'input','mediaCustosPessoal',[0 45]);%baixo
     if mf == 1
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'baixo','trimf',[0,0,14]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'medio','trimf',[8,23,37]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'alto','trimf',[31,45,45]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'medio','trimf',[mE,m,mD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(offset);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'baixo','gaussmf',[oofset, baixo]);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',1,'alto','gaussmf',[oofset, alto]);
     end
     
     %|400|---|600-700-800|---|850|---|900-1000-1100|---|1300|
-    baixo = 400 ; alto = 1300; oofset = setdiv(300);
+    baixo = 400 ; alto = 1300; offset = 300;
     fis_Retribuicao=addvar(fis_Retribuicao,'input','salarioMedioSCA',[400 1300]);%baixo
     if mf == 1
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'baixo','trimf',[400,400,800]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'medio','trimf',[600,850,1100]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'alto','trimf',[900,1300,1300]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'medio','trimf',[mE,m,mD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(offset);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'baixo','gaussmf',[oofset, baixo]);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',2,'alto','gaussmf',[oofset, alto]);
     end
     
     %|700|---|925-975-1025|---|1250|---|1475-1525-1575|---|1800|
-    baixo = 0 ; alto = 1800; oofset = setdiv(1025 - 900);
+    baixo = 0 ; alto = 1800; offset =(1025 - 900);
     fis_Retribuicao=addvar(fis_Retribuicao,'input','salarioMedioCCA',[700 1800]);%baixo
     if mf == 1
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',3,'baixo','trimf',[700,700,1025]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',3,'medio','trimf',[925,1250,1575]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',3,'alto','trimf',[1475,1800,1800]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',3,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',3,'medio','trimf',[mE,m,mD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',3,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(offset);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',3,'baixo','gaussmf',[oofset, baixo]);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',3,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',3,'alto','gaussmf',[oofset, alto]);
     end
     
     %|0|---|5-7-9|---|13|---|16-18-20|---|25|
-    baixo = 0 ; alto = 25; oofset = setdiv(11);
+    baixo = 0 ; alto = 25; offset = (11);
     fis_Retribuicao=addvar(fis_Retribuicao,'input','percentBonificacoes',[0 25]);%alto
     if mf == 1
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',4,'baixo','trimf',[0,0,9]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',4,'medio','trimf',[5,13,20]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'input',4,'alto','trimf',[16,25,25]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',4,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',4,'medio','trimf',[mE,m,mD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'input',4,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(offset);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',4,'baixo','gaussmf',[oofset, baixo]);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',4,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Retribuicao=addmf(fis_Retribuicao,'input',4,'alto','gaussmf',[oofset, alto]);
     end
     %output
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; oofset = setdiv(0.38);
+    baixo = 0; alto = 1; offset = (0.38);
     fis_Retribuicao=addvar(fis_Retribuicao,'output', 'Retribuicao', [baixo alto]);
     if mf == 1
-        fis_Retribuicao=addmf(fis_Retribuicao,'output',1,'baixo','trimf',[0,0,0.38]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'output',1,'medio','trimf',[0.28,0.50,0.71]);
-        fis_Retribuicao=addmf(fis_Retribuicao,'output',1,'alto','trimf',[0.61,1.00,1.00]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Retribuicao=addmf(fis_Retribuicao,'output',1,'baixo','trimf',[baixo,baixo,bD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'output',1,'medio','trimf',[mE,m,mD]);
+        fis_Retribuicao=addmf(fis_Retribuicao,'output',1,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(offset);
         fis_Retribuicao=addmf(fis_Retribuicao,'output',1,'baixo','gaussmf',[oofset, baixo]);
         fis_Retribuicao=addmf(fis_Retribuicao,'output',1,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Retribuicao=addmf(fis_Retribuicao,'output',1,'alto','gaussmf',[oofset, alto]);

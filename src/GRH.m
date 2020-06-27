@@ -13,48 +13,56 @@ function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao, m
     
     %inputs
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; oofset = setdiv(0.38);
+    baixo = 0; alto = 1; offset = 0.38;
     if mf == 1
-        fis_GRH=addmf(fis_GRH,'input',1,'baixo','trimf',[0,0,0.38]);
-        fis_GRH=addmf(fis_GRH,'input',1,'medio','trimf',[0.28,0.50,0.71]);
-        fis_GRH=addmf(fis_GRH,'input',1,'alto','trimf',[0.61,1.00,1.00]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_GRH=addmf(fis_GRH,'input',1,'baixo','trimf',[baixo,baixo,bD]);
+        fis_GRH=addmf(fis_GRH,'input',1,'medio','trimf',[mE,m,mD]);
+        fis_GRH=addmf(fis_GRH,'input',1,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(0.38);
         fis_GRH=addmf(fis_GRH,'input',1,'baixo','gaussmf',[oofset baixo]);
         fis_GRH=addmf(fis_GRH,'input',1,'medio','gaussmf',[oofset calcMeio(baixo, alto)]);
         fis_GRH=addmf(fis_GRH,'input',1,'alto','gaussmf',[oofset alto]);
     end
     
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; oofset = setdiv(0.38);
+    baixo = 0; alto = 1; offset = 0.38;
     if mf == 1
-        fis_GRH=addmf(fis_GRH,'input',2,'baixo','trimf',[0,0,0.38]);
-        fis_GRH=addmf(fis_GRH,'input',2,'medio','trimf',[0.28,0.50,0.71]);
-        fis_GRH=addmf(fis_GRH,'input',2,'alto','trimf',[0.61,1.00,1.00]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_GRH=addmf(fis_GRH,'input',2,'baixo','trimf',[baixo,baixo,bD]);
+        fis_GRH=addmf(fis_GRH,'input',2,'medio','trimf',[mE,m,mD]);
+        fis_GRH=addmf(fis_GRH,'input',2,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(offset);
         fis_GRH=addmf(fis_GRH,'input',2,'baixo','gaussmf',[oofset baixo]);
         fis_GRH=addmf(fis_GRH,'input',2,'medio','gaussmf',[oofset calcMeio(baixo, alto)]);
         fis_GRH=addmf(fis_GRH,'input',2,'alto','gaussmf',[oofset alto]);
     end
     
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; oofset = setdiv(0.38);
+    baixo = 0; alto = 1; offset = 0.38;
     if mf == 1
-        fis_GRH=addmf(fis_GRH,'input',3,'baixo','trimf',[0,0,0.38]);
-        fis_GRH=addmf(fis_GRH,'input',3,'medio','trimf',[0.28,0.50,0.71]);
-        fis_GRH=addmf(fis_GRH,'input',3,'alto','trimf',[0.61,1.00,1.00]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_GRH=addmf(fis_GRH,'input',3,'baixo','trimf',[baixo,baixo,bD]);
+        fis_GRH=addmf(fis_GRH,'input',3,'medio','trimf',[mE,m,mD]);
+        fis_GRH=addmf(fis_GRH,'input',3,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(offset);
         fis_GRH=addmf(fis_GRH,'input',3,'baixo','gaussmf',[oofset baixo]);
         fis_GRH=addmf(fis_GRH,'input',3,'medio','gaussmf',[oofset calcMeio(baixo, alto)]);
         fis_GRH=addmf(fis_GRH,'input',3,'alto','gaussmf',[oofset alto]);
     end
     
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; oofset = setdiv(0.38);
+    baixo = 0; alto = 1; offset = 0.38;
     if mf == 1
-        fis_GRH=addmf(fis_GRH,'input',4,'baixo','trimf',[0,0,0.38]);
-        fis_GRH=addmf(fis_GRH,'input',4,'medio','trimf',[0.28,0.50,0.71]);
-        fis_GRH=addmf(fis_GRH,'input',4,'alto','trimf',[0.61,1.00,1.00]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_GRH=addmf(fis_GRH,'input',4,'baixo','trimf',[baixo,baixo,bD]);
+        fis_GRH=addmf(fis_GRH,'input',4,'medio','trimf',[mE,m,mD]);
+        fis_GRH=addmf(fis_GRH,'input',4,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(offset);
         fis_GRH=addmf(fis_GRH,'input',4,'baixo','gaussmf',[oofset baixo]);
         fis_GRH=addmf(fis_GRH,'input',4,'medio','gaussmf',[oofset calcMeio(baixo, alto)]);
         fis_GRH=addmf(fis_GRH,'input',4,'alto','gaussmf',[oofset alto]);

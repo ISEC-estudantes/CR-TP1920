@@ -37,13 +37,15 @@ function [ fis_Retencao, out ] = Retencao(percentEmptN1Desistentes,percentEmptOp
     
     %output
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; oofset = setdiv(0.38);
+    baixo = 0; alto = 1; offset = (0.38);
     fis_Retencao=addvar(fis_Retencao,'output', 'Retencao', [baixo alto]);
     if mf == 1
-        fis_Retencao=addmf(fis_Retencao,'output',1,'baixo','trimf',[0,0,0.38]);
-        fis_Retencao=addmf(fis_Retencao,'output',1,'medio','trimf',[0.28,0.50,0.71]);
-        fis_Retencao=addmf(fis_Retencao,'output',1,'alto','trimf',[0.61,1.00,1.00]);
+        [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
+        fis_Retencao=addmf(fis_Retencao,'output',1,'baixo','trimf',[baixo,baixo,bD]); 
+        fis_Retencao=addmf(fis_Retencao,'output',1,'medio','trimf',[mE,m,mD]);
+        fis_Retencao=addmf(fis_Retencao,'output',1,'alto','trimf',[aE,alto,alto]);
     else
+        oofset = setdiv(offset);
         fis_Retencao=addmf(fis_Retencao,'output',1,'baixo','gaussmf',[oofset, baixo]);
         fis_Retencao=addmf(fis_Retencao,'output',1,'medio','gaussmf',[oofset, calcMeio(baixo, alto)]);
         fis_Retencao=addmf(fis_Retencao,'output',1,'alto','gaussmf',[oofset, alto]);
