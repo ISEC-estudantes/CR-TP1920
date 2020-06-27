@@ -14,13 +14,11 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
         fis_Formacao=addmf(fis_Formacao,'input',1,'baixo','trimf',[baixo,baixo,bD]); %#ok<*FISADM>
         fis_Formacao=addmf(fis_Formacao,'input',1,'medio','trimf',[mE,m,mD]);
         fis_Formacao=addmf(fis_Formacao,'input',1,'alto','trimf',[aE,alto,alto]);
-    elseif mf == 2 
+    else%if mf == 2 
         oofset = setdiv(offset);
         fis_Formacao=addmf(fis_Formacao,'input',1,'baixo','gaussmf',[oofset, baixo]); %#ok<*FISADM>
         fis_Formacao=addmf(fis_Formacao,'input',1,'medio','gaussmf',[oofset,calcMeio(baixo, alto)]);
         fis_Formacao=addmf(fis_Formacao,'input',1,'alto','gaussmf',[oofset, alto]);
-    else
-        
     end
     
     %|0|---|6.25-11.25-16.25|---|22.5|---|28.75-33.75-38.75|---|45|
