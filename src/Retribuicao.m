@@ -3,10 +3,10 @@ function [ fis_Retribuicao, out ] = Retribuicao(mediaCustosPessoal, salarioMedio
     %PASSO 1: crie a estrutura FIS de nome fis_Retribuicao
     %%mamdani default gang
     fis_Retribuicao = newfis('fis_Retribuicao');
-    
+    offsets = getOffsets();
     %input
     %|0|---|8-11-14|---|23|---|31-34-37|---|45|
-    baixo = 0 ; alto = 45; offset = 14;
+    baixo = 0 ; alto = 45; offset = offsets(5);
     fis_Retribuicao=addvar(fis_Retribuicao,'input','mediaCustosPessoal',[0 45]);%baixo
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
@@ -21,7 +21,7 @@ function [ fis_Retribuicao, out ] = Retribuicao(mediaCustosPessoal, salarioMedio
     end
     
     %|400|---|600-700-800|---|850|---|900-1000-1100|---|1300|
-    baixo = 400 ; alto = 1300; offset = 300;
+    baixo = 400 ; alto = 1300; offset = offsets(6);
     fis_Retribuicao=addvar(fis_Retribuicao,'input','salarioMedioSCA',[400 1300]);%baixo
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
@@ -36,7 +36,7 @@ function [ fis_Retribuicao, out ] = Retribuicao(mediaCustosPessoal, salarioMedio
     end
     
     %|700|---|925-975-1025|---|1250|---|1475-1525-1575|---|1800|
-    baixo = 0 ; alto = 1800; offset =(1025 - 900);
+    baixo = 0 ; alto = 1800; offset = offsets(7);
     fis_Retribuicao=addvar(fis_Retribuicao,'input','salarioMedioCCA',[700 1800]);%baixo
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
@@ -51,7 +51,7 @@ function [ fis_Retribuicao, out ] = Retribuicao(mediaCustosPessoal, salarioMedio
     end
     
     %|0|---|5-7-9|---|13|---|16-18-20|---|25|
-    baixo = 0 ; alto = 25; offset = (11);
+    baixo = 0 ; alto = 25; offset = offsets(8);
     fis_Retribuicao=addvar(fis_Retribuicao,'input','percentBonificacoes',[0 25]);%alto
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
@@ -66,7 +66,7 @@ function [ fis_Retribuicao, out ] = Retribuicao(mediaCustosPessoal, salarioMedio
     end
     %output
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; offset = (0.38);
+    baixo = 0; alto = 1; offset = offsets(9);
     fis_Retribuicao=addvar(fis_Retribuicao,'output', 'Retribuicao', [baixo alto]);
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);

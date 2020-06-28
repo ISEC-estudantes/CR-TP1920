@@ -3,10 +3,10 @@ function [ fis_Recrutamento, out ] = Recrutamento(mediaCustoContrato, mediaTmpPr
     %PASSO 1: crie a estrutura FIS de nome fis_Recrutamento
     %%mamdani default gang
     fis_Recrutamento = newfis('fis_Recrutamento');
-    
+    offsets = getOffsets();
     %input
     %|5|---|20-28|---|40|---|55-60|---|75|
-    baixo = 5; alto = 75; offset = (28);
+    baixo = 5; alto = 75; offset = offsets(1);
     fis_Recrutamento=addvar(fis_Recrutamento,'input','mediaCustoContrato',[baixo alto]);%baixo
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
@@ -21,7 +21,7 @@ function [ fis_Recrutamento, out ] = Recrutamento(mediaCustoContrato, mediaTmpPr
     end
     
     %|3|----|30-40-50|---|60|---|80-90-100|---|120|
-    baixo = 3; alto = 120; offset = (50);
+    baixo = 3; alto = 120; offset = offsets(2);
     fis_Recrutamento=addvar(fis_Recrutamento,'input','mediaTmpProcessoEmpTemporario',[baixo alto]);%baixo
    if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
@@ -36,7 +36,7 @@ function [ fis_Recrutamento, out ] = Recrutamento(mediaCustoContrato, mediaTmpPr
     end
     
     %|3|---|22-30-38|---|45|---|52-60-68|--|90|
-    baixo = 3; alto = 90; offset = 38;
+    baixo = 3; alto = 90; offset = offsets(3);
     fis_Recrutamento=addvar(fis_Recrutamento,'input','mediaTmpProcessoEmpDefinitivo',[baixo alto]);%baixo
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
@@ -52,7 +52,7 @@ function [ fis_Recrutamento, out ] = Recrutamento(mediaCustoContrato, mediaTmpPr
     
     %output
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; offset = (0.38);
+    baixo = 0; alto = 1; offset = offsets(4);
     fis_Recrutamento=addvar(fis_Recrutamento,'output', 'Recrutamento', [baixo alto]);%alto
     if mf == 1
          [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);

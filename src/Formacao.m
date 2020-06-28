@@ -3,10 +3,10 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
     %PASSO 1: crie a estrutura FIS de nome fis_Formacao
     %%mamdani default gang
     fis_Formacao = newfis('fis_Formacao'); %#ok<*FISNEW>
-    
+    offsets = getOffsets();
     %input
     %|0|---|0.75-1.25-1.75|---|2.5|---|3.25-3.75-4.25|---|5|
-    baixo = 0 ; alto = 5; offset = 1.30;
+    baixo = 0 ; alto = 5; offset = offsets(10);
     fis_Formacao=addvar(fis_Formacao,'input','percentCustoForm',[baixo alto]);%medio
    
     if mf == 1
@@ -22,7 +22,7 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
     end
     
     %|0|---|6.25-11.25-16.25|---|22.5|---|28.75-33.75-38.75|---|45|
-    baixo = 0; alto = 45; offset = 14;
+    baixo = 0; alto = 45; offset = offsets(11);
     fis_Formacao=addvar(fis_Formacao,'input','horasForm',[baixo, alto]);%medio
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
@@ -37,7 +37,7 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
     end
     
     %|0|---|28-33.3333-38|---|50| ---|61-66.66666-71|---|100|
-    baixo = 0; alto = 100; offset = (38);
+    baixo = 0; alto = 100; offset = offsets(12);
     fis_Formacao=addvar(fis_Formacao,'input','horasFormFN1',[baixo, alto]);%alto
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
@@ -53,7 +53,7 @@ function [ fis_Formacao, out ] = Formacao(percentCustoForm, horasForm, horasForm
     
     %output
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; offset = 0.38;
+    baixo = 0; alto = 1; offset = offsets(13);
     fis_Formacao=addvar(fis_Formacao,'output', 'Formacao', [baixo alto]); %#ok<*FISADV>
     if mf == 1%trimf
          [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);

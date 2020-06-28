@@ -1,7 +1,8 @@
 function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao, mf)
     
     fis_GRH = newfis('fis_GRH');
-    
+    offsets = getOffsets();
+    baixo = 0; alto = 1; 
     %%input
     fis_GRH=addvar(fis_GRH,'input','recrutamento',[0 1]);%alto
     fis_GRH=addvar(fis_GRH,'input','retribuicao',[0 1]);%alto
@@ -13,7 +14,7 @@ function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao, m
     
     %inputs
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; offset = 0.38;
+    offset = offsets(4);
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
         fis_GRH=addmf(fis_GRH,'input',1,'baixo','trimf',[baixo,baixo,bD]);
@@ -27,7 +28,7 @@ function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao, m
     end
     
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; offset = 0.38;
+    offset = offsets(9);
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
         fis_GRH=addmf(fis_GRH,'input',2,'baixo','trimf',[baixo,baixo,bD]);
@@ -41,7 +42,7 @@ function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao, m
     end
     
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; offset = 0.38;
+   offset = offsets(13);
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
         fis_GRH=addmf(fis_GRH,'input',3,'baixo','trimf',[baixo,baixo,bD]);
@@ -55,7 +56,7 @@ function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao, m
     end
     
     %|0|---|28-33-38|---|50| ---|61-66-71|---|100|
-    baixo = 0; alto = 1; offset = 0.38;
+    offset = offsets(16);
     if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);
         fis_GRH=addmf(fis_GRH,'input',4,'baixo','trimf',[baixo,baixo,bD]);
@@ -70,7 +71,7 @@ function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao, m
     
     %output
     %|0|---|-0.125-|---|0.25|---|-0.375-|---|0.5|---|-0.625-|---|0.75|---|-0.875-|---|1|
-    offset = 0.2;
+    offset = offsets(17);
     if mf == 1
          [bD, sE, s, sD, tE, t, tD, qE, q, qD, aE] = quintvalue(alto, baixo, offset);
         fis_GRH=addmf(fis_GRH,'output',1,'mau','trimf',[baixo, baixo, bD]);
