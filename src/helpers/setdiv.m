@@ -1,3 +1,3 @@
-function [oofset] = setdiv(offsetOriginal)
-    oofset =  offsetOriginal / 3;
+function [offset] = setdiv(offsetOriginal)
+    offset =  offsetOriginal / 3;
 end

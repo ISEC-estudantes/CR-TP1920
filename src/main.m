@@ -1,8 +1,11 @@
-function  [ out ] = main(mf)
+function  [ out ] = main(mf, valores)
     warning off
     addpath('./helpers/');
     if ~exist('mf','var')
         mf = 2 ; % 1 - trimf ; 2 - gaussmf
+    end
+    if ~exist('valores', 'var')
+        valores = 1;
     end
     %%%variaveis
     %valores : 1 - alto ; 2 - medio ; 3 - min
@@ -11,7 +14,7 @@ function  [ out ] = main(mf)
         mediaCustosPessoal, salarioMedioSCA,salarioMedioCCA, percentBonificacoes, ...
         percentCustoForm, horasForm, horasFormFN1, ...
         percentEmptN1Desistentes, percentEmptOperacionaisDesistentes...
-        ] = PreValores(3);
+        ] = PreValores(valores);
     
     [~, recrutamento] = Recrutamento(mediaCustoContrato, mediaTmpProcessoEmpTemporario, mediaTmpProcessoEmpDefinitivo, mf );
     [~, retribuicao] = Retribuicao( mediaCustosPessoal, salarioMedioSCA, salarioMedioCCA, percentBonificacoes, mf );
@@ -41,9 +44,9 @@ function  [ out ] = main(mf)
     end
     
     display("Resultado["+grh+"]["+typeofFunc+"]: "+ nivel)
-    
     display("Recrutamento: " + recrutamento)
     display("Retribuicao: " + retribuicao)
     display("Formacao: " + formacao )
     display("Retencao: " + retencao)
+    %fuzzy(fis_GRH)
 end

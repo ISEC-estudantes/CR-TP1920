@@ -21,7 +21,7 @@ function [ fis_Recrutamento, out ] = Recrutamento(mediaCustoContrato, mediaTmpPr
     end
     
     %|3|----|30-40-50|---|60|---|80-90-100|---|120|
-    baixo = 3; alto = 120; offset = (30);
+    baixo = 3; alto = 120; offset = (50);
     fis_Recrutamento=addvar(fis_Recrutamento,'input','mediaTmpProcessoEmpTemporario',[baixo alto]);%baixo
    if mf == 1
         [m, bD,mE,mD, aE] = trivalue(alto, baixo, offset);

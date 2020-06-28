@@ -70,14 +70,16 @@ function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao, m
     
     %output
     %|0|---|-0.125-|---|0.25|---|-0.375-|---|0.5|---|-0.625-|---|0.75|---|-0.875-|---|1|
-    oofset = setdiv(0.2);
+    offset = 0.2;
     if mf == 1
-        fis_GRH=addmf(fis_GRH,'output',1,'mau','trimf',[0,0,0.125]);
-        fis_GRH=addmf(fis_GRH,'output',1,'meiocre','trimf',[0.125,0.25,0.375]);
-        fis_GRH=addmf(fis_GRH,'output',1,'suficiente','trimf',[0.375,0.5,0.625]);
-        fis_GRH=addmf(fis_GRH,'output',1,'bom','trimf',[0.625,0.75,0.875]);
-        fis_GRH=addmf(fis_GRH,'output',1,'muito bom','trimf',[0.875,1,1]);
+         [bD, sE, s, sD, tE, t, tD, qE, q, qD, aE] = quintvalue(alto, baixo, offset);
+        fis_GRH=addmf(fis_GRH,'output',1,'mau','trimf',[baixo, baixo, bD]);
+        fis_GRH=addmf(fis_GRH,'output',1,'meiocre','trimf',[sE,s,sD]);
+        fis_GRH=addmf(fis_GRH,'output',1,'suficiente','trimf',[ tE, t, tD]);
+        fis_GRH=addmf(fis_GRH,'output',1,'bom','trimf',[qE, q, qD]);
+        fis_GRH=addmf(fis_GRH,'output',1,'muito bom','trimf',[aE, alto, alto]);
     else
+        oofset = setdiv(offset);
         fis_GRH=addmf(fis_GRH,'output',1,'mau','gaussmf',[oofset 0]);
         fis_GRH=addmf(fis_GRH,'output',1,'meiocre','gaussmf',[oofset 0.25]);
         fis_GRH=addmf(fis_GRH,'output',1,'suficiente','gaussmf',[oofset 0.5]);
@@ -92,9 +94,7 @@ function [ fis_GRH, out ] = GRH(recrutamento, retribuicao, formacao, retencao, m
         ];
     
     fis_GRH = addrule(fis_GRH, regras);
-    
     entrada = [ recrutamento retribuicao formacao retencao ];
-    
     out = evalfis(entrada, fis_GRH);
     
 end
